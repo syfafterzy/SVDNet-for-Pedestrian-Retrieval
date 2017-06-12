@@ -1,0 +1,15 @@
+net: "SVDNet/resnet/restraint_resnet.prototxt"
+test_iter:80 
+test_interval:500
+#average_loss:20
+base_lr: 0.001
+lr_policy: "step"
+gamma: 0.1
+stepsize:5000 
+display: 50
+max_iter: 8000
+momentum: 0.9
+weight_decay: 0.0005
+snapshot:8000
+snapshot_prefix: "SVDNet/resnet/Restraint/restraint"
+solver_mode: GPU

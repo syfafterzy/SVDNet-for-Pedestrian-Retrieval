@@ -1,0 +1,17 @@
+base_lr: 0.001
+base_lr: 0.001
+base_lr: 0.001
+base_lr: 0.0001
+base_lr: 0.0001
+base_lr: 0.0001
+base_lr: 0.0001
+base_lr: 0.0001
+base_lr: 0.0001
+base_lr: 0.0001
+base_lr: 0.0001
+base_lr: 0.0001
+base_lr: 0.0001
+base_lr: 0.0001
+base_lr: 0.0001
+base_lr: 0.00001
+base_lr: 0.00001
