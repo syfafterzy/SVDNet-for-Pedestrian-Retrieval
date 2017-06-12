@@ -11,7 +11,6 @@ layer {
   }
   transform_param {
     mirror: true
-    #crop_size: 224
    mean_file: "./SVDNet/resnet/mean_224.binaryproto"
   }
   data_param {
