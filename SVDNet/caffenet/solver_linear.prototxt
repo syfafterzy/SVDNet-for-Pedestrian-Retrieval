@@ -1,0 +1,14 @@
+net: "SVDNet/caffenet/train_caffenet_linear.prototxt"
+test_iter: 20
+test_interval: 1000
+base_lr: 0.001
+lr_policy: "step"
+gamma: 0.1
+stepsize: 10000
+display: 50
+max_iter: 15000
+momentum: 0.9
+weight_decay: 0.0005
+snapshot:15000
+snapshot_prefix: "SVDNet/caffenet/linear/linear"
+solver_mode: GPU

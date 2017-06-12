@@ -1,20 +1,19 @@
-cp 1024d_linear.caffemodel caffenet_linear_tmp.caffemodel
+#please define your caffe rootpath and market-1501 path first.
+#lmdb required, or you can change the data format in prototxt files by hand.
 CAFFEPATH=~/caffe
-if [ ! -x "Restraint" ]
-then
-mkdir Restraint
-fi
-if [ ! -x "Relaxation" ]
-then
-mkdir Relaxation
-fi
-if [ ! -x "log" ]
-then
-mkdir log
-fi
+Train_Data_PATH=~/market1501/caffenet_img_train_lmdb
+Val_Data_PATH=~/market1501/caffenet_img_test_lmdb
 
-if []
+sed -i '16d' restraint_caffenet.prototxt relaxation_caffenet.prototxt
+sed -i "16i \    source:\ \"$Train_Data_PATH\"" restraint_caffenet.prototxt relaxation_caffenet.prototxt
+sed -i '35d' restraint_caffenet.prototxt relaxation_caffenet.prototxt
+sed -i "35i \    source:\ \"$Val_Data_PATH\"" restraint_caffenet.prototxt relaxation_caffenet.prototxt
 
+if [ ! -x Restraint ]; then mkdir Restraint; fi
+if [ ! -x Relaxation ]; then mkdir Relaxation; fi
+if [ ! -x log ]; then mkdir log; fi
+
+cp 1024d_linear.caffemodel caffenet_linear_tmp.caffemodel
 for i in $(seq  1 25 )
 do
    echo Starting Iteration $i

@@ -12,21 +12,11 @@ layer {
   transform_param {
     mirror: true
     #crop_size: 224
-   # mean_file: "/home/Disk1/sunyf/PRW/train/mean.binaryproto"
-   mean_file: "/home/sunyf/market1501/orig_mean.binaryproto"
+   mean_file: "./SVDNet/resnet/mean_224.binaryproto"
   }
-# mean pixel / channel-wise mean instead of mean image
-#  transform_param {
-#    crop_size: 227
-#    mean_value: 104
-#    mean_value: 117
-#    mean_value: 123
-#    mirror: true
-#  }
   data_param {
-   # source: "/home/Disk1/sunyf/PRW/train/img_train_lmdb"
     source: "/home/sunyf/market1501/orig_train_lmdb"
-    batch_size:8 
+    batch_size:16 
     backend: LMDB
   }
 }
@@ -40,20 +30,9 @@ layer {
   }
   transform_param {
     mirror: false
-  #  crop_size: 224
-  #  mean_file: "/home/Disk1/sunyf/PRW/train/mean.binaryproto"
-     mean_file: "/home/sunyf/market1501/orig_mean.binaryproto"
+     mean_file: "./SVDNet/resnet/mean_224.binaryproto"
   }
-# mean pixel / channel-wise mean instead of mean image
-#  transform_param {
-#    crop_size: 227
-#    mean_value: 104
-#    mean_value: 117
-#    mean_value: 123
-#    mirror: false
-#  }
   data_param {
-#    source: "/home/Disk1/sunyf/PRW/train/img_test_lmdb"
      source:"/home/sunyf/market1501/orig_test_lmdb"
     batch_size:20
     backend: LMDB
@@ -2358,15 +2337,6 @@ layer {
 	}
 }
 
-layer{
-	bottom: "pool5"
-	top: "pool5"
-	name:"drop_pool5"
-	type:"Dropout"
-	dropout_param {
-			dropout_ratio: 0.5
-	}
-}
 
 layer {
 	bottom: "pool5"
@@ -2374,16 +2344,14 @@ layer {
 	name: "fc"
 	type: "InnerProduct"
 	param {
-    	lr_mult: 1
+    	lr_mult: 1.0
     	decay_mult: 1
    	}
    	inner_product_param {
-     	num_output:512
+     	num_output:1024
      	weight_filler {
        	type: "gaussian"
        	std: 0.01
-#       		
-#		type: "xavier"
     	}
 	bias_term: false
    	}
@@ -2409,10 +2377,7 @@ layer {
                 num_output:751
                 kernel_size:1
                 stride:1
-#                bias_term:false
               weight_filler {
-#		type: "xavier"
-#		type: "gaussian"
 		std: 0.01
 		}
                bias_filler {
@@ -2429,9 +2394,6 @@ layer {
                decay_mult:.0
      }
  }
-#
-
-
 
 layer {
   name: "accuracy"

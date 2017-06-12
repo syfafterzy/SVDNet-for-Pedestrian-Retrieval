@@ -1,19 +1,23 @@
+#please define your caffe root and your training data for market-1501 here
+#lmdb is required, or you can set the format in prototxt by hand.
+CAFFEPATH=~/caffe
+Train_Data_PATH=~/market1501/orig_train_lmdb
+Val_Data_PATH=~/market1501/orig_test_lmdb
+
+sed -i '17d' restraint_resnet.prototxt relaxation_resnet_partial.prototxt
+sed -i "17i \    source:\ \"$Train_Data_PATH\"" restraint_resnet.prototxt relaxation_resnet_partial.prototxt
+sed -i '35d' restraint_resnet.prototxt relaxation_resnet_partial.prototxt
+sed -i "35i \    source:\ \"$Val_Data_PATH\"" restraint_resnet.prototxt relaxation_resnet_partial.prototxt
+#==============make dir for intermediate models================================#
+if [ ! -x "Restraint" ]; then mkdir Restraint; fi
+if [ ! -x "Relaxation" ]; then mkdir Relaxation; fi
+if [ ! -x "log" ]; then mkdir log; fi
+#=======================dir made================================================#
+
 cp 1024d_linear.caffemodel resnet_linear_tmp.caffemodel
 
-if [ ! -x "Restraint" ]
- then
- mkdir Restraint
-fi
-if [ ! -x "Relaxation" ]
- then
- mkdir Relaxation
-fi
-if [ ! -x "log" ]
- then
- mkdir log
-fi
-
-for i in $(seq  1 2 )
+#=================start RRI=====================================================#
+for i in $(seq  1 7 )
 do
    echo Starting Iteration $i
    cd ~/caffe/SVDNet/resnet/
@@ -33,4 +37,4 @@ do
    mv SVDNet/resnet/Relaxation/relaxation_iter_8000.caffemodel SVDNet/resnet/Relaxation/Relaxation${i}.caffemodel
    cp SVDNet/resnet/Relaxation/Relaxation${i}.caffemodel SVDNet/resnet/resnet_linear_tmp.caffemodel
 done
-
+#=======================Finish RRI================================================#
