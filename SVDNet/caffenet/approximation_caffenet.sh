@@ -1,6 +1,19 @@
 cp 1024d_linear.caffemodel caffenet_linear_tmp.caffemodel
 CAFFEPATH=~/caffe
+if [ ! -x "Restraint" ]
+then
+mkdir Restraint
+fi
+if [ ! -x "Relaxation" ]
+then
+mkdir Relaxation
+fi
+if [ ! -x "log" ]
+then
+mkdir log
+fi
 
+if []
 
 for i in $(seq  1 25 )
 do

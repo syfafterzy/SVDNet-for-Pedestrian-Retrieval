@@ -1,5 +1,18 @@
 cp 1024d_linear.caffemodel resnet_linear_tmp.caffemodel
 
+if [ ! -x "Restraint" ]
+ then
+ mkdir Restraint
+fi
+if [ ! -x "Relaxation" ]
+ then
+ mkdir Relaxation
+fi
+if [ ! -x "log" ]
+ then
+ mkdir log
+fi
+
 for i in $(seq  1 2 )
 do
    echo Starting Iteration $i
