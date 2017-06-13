@@ -44,7 +44,9 @@ sh train\_RRI.sh
 
 ## Testing
 
-After 25(7) RRIs for caffenet(resnet) architecutre, the training of SVDNet converges. You may extract the FC6 (or FC of resnet) feature of test dataset and then run evaluation code (evaluation code goes along with the dataset in following links). For caffenet(resnet) backboned SVDNet(with Eigenlayer output 1024d), the Rank-1 accuracy on [Market-1501 Dataset](http://www.liangzheng.org/Project/project_reid.html) is about 80%(82%), and the mAP is about 55%(62%). On [DukeMTMC-reID Dataset](https://github.com/layumi/DukeMTMC-reID_evaluation), the Rank-1 accuracy is about 76%, and the mAP is about 56%. Other dimension settings of Eigenlayer achive slightly different performance.
+After 25(7) RRIs for caffenet(resnet) architecutre, the training of SVDNet converges. You may extract the FC6 (or FC of resnet) feature of test dataset and then run evaluation code (evaluation code goes along with the dataset in following links).   
+For caffenet(resnet) backboned SVDNet(with Eigenlayer output 1024d), the Rank-1 accuracy on [Market-1501 Dataset](http://www.liangzheng.org/Project/project_reid.html) is about 80%(82%), and the mAP is about 55%(62%). 
+On [DukeMTMC-reID Dataset](https://github.com/layumi/DukeMTMC-reID_evaluation), the Rank-1 accuracy is about 76%, and the mAP is about 56%. Other dimension settings of Eigenlayer achive slightly different performance.
 
 ## Citiaion
 <font face="times new roman" size=4>
