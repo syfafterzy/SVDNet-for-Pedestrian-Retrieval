@@ -5,7 +5,7 @@ else
 end
 
 model_dir = '../../SVDNet/resnet/';
-net_model = [model_dir 'deploy_resnet_linear.prototxt'];
+net_model = [model_dir 'models/deploy_resnet_linear.prototxt'];
 net_weights = [model_dir,'resnet_linear_tmp.caffemodel']
 phase = 'test'; % run with phase test (so that dropout isn't applied)
 if ~exist(net_weights, 'file')

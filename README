@@ -1,1 +1,30 @@
-code for SVDNet
+SVDNet for Pedestrian Retrieval
+
+In this package, we provide our training code written in shell and matlab script for the paper [SVDNet for Pedestrain Retrieval](https://arxiv.org/pdf/1703.05693.pdf). No installation is needed as long as you have caffe and its matlab bindings installed.
+
+This code is ONLY released for academic use.
+
+Setting up and running the shell script
+
+Step 0: Compile master branch of caffe
+Checkout the master branch of Caffe and compile it on your machine. Do remember to install the matlab bindings as well, simply by run "make matcaffe" after buiding caffe.
+
+Step 1: Clone this repo and copy files to the required dictorary.
+git clone https://github.com/syfafterzy/SVDNet-for-Pedestrian-Retrieval.git
+Assume that your caffe rootpath is CAFFE_PATH.
+cp -r SVDNet-for-Pedestrian-Retrieval/SVDNet CAFFE_PATH.
+cp -r SVDNet-for-Pedestrian-Retrieval/matlab/SVDNet CAFFE_PATH/matlab/
+
+Step 2: Train a model with a linear fully-connected layer based on caffenet or resnet.
+cd CAFFE_PATH/SVDNet/caffenet(resnet)/
+Define your path of caffenet(resnet) basemodel and market1501 dataset in train_basemodel.sh
+sh train_basemodel.sh
+Please NOTE that all the prototxt files require lmdb as input data. You may change the data format in the prototxt by hand as well. In this case, you should comment out the shell commands for setting the input data path in the .sh files.
+
+We will also provide caffenet-based and resnet-based models containing a 1024d-linear FC layer in BAIDUYun Soon. You can download them and copy them to CAFFE_PATH/SVDNet/caffenet(resnet)/1024d_linear.caffemodel.
+
+Step 3: Start Restraint and Relaxation Iteration to train SVDNet.
+Define your caffe rootpath and path of market1501 dataset in train_RRI.sh, then start the RRI training simply by:
+sh train_RRI.sh
+
+after 25(7) RRIs for caffenet(resnet) architecutre, the training of SVDNet converges. You may extract the features of test dataset and then run evaluation code. For caffenet(resnet) backboned SVDNet, the Rank-1 accuracy on market-1501 is about 80%(82%), and the mAP is about 55%(62%). Other dimension settings of Eigenlayer achives slightly different performance.

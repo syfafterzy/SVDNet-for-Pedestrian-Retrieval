@@ -5,7 +5,7 @@ else
 end
 
 model_dir = '../../SVDNet/caffenet/';
-net_model =[model_dir 'deploy_linear.prototxt']
+net_model =[model_dir 'models/deploy_linear.prototxt']
 net_weights = [model_dir 'caffenet_linear_tmp.caffemodel']
 phase = 'test'; % run with phase test (so that dropout isn't applied)
 if ~exist(net_weights, 'file')

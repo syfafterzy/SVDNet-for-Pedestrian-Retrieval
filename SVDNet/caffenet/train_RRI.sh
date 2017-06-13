@@ -3,12 +3,13 @@
 CAFFEPATH=~/caffe
 Train_Data_PATH=~/market1501/caffenet_img_train_lmdb
 Val_Data_PATH=~/market1501/caffenet_img_test_lmdb
-
+cd models
 sed -i '16d' restraint_caffenet.prototxt relaxation_caffenet.prototxt
 sed -i "16i \    source:\ \"$Train_Data_PATH\"" restraint_caffenet.prototxt relaxation_caffenet.prototxt
 sed -i '35d' restraint_caffenet.prototxt relaxation_caffenet.prototxt
 sed -i "35i \    source:\ \"$Val_Data_PATH\"" restraint_caffenet.prototxt relaxation_caffenet.prototxt
 
+cd ..
 if [ ! -x Restraint ]; then mkdir Restraint; fi
 if [ ! -x Relaxation ]; then mkdir Relaxation; fi
 if [ ! -x log ]; then mkdir log; fi
@@ -26,11 +27,11 @@ do
    fi
 
    cd ${CAFFEPATH}/
-   ./build/tools/caffe train -solver SVDNet/caffenet/solver_restraint.prototxt -weights SVDNet/caffenet/caffenet_force_eigen.caffemodel -gpu 1,2 2>&1 | tee SVDNet/caffenet/log/Restraint${i}.log
+   ./build/tools/caffe train -solver SVDNet/caffenet/models/solver_restraint.prototxt -weights SVDNet/caffenet/caffenet_force_eigen.caffemodel -gpu 1,2 2>&1 | tee SVDNet/caffenet/log/Restraint${i}.log
    mv SVDNet/caffenet/Restraint/restraint_iter_2000.caffemodel SVDNet/caffenet/Restraint/Restraint${i}.caffemodel
-   ./build/tools/caffe train -solver SVDNet/caffenet/solver_relaxation.prototxt -weights SVDNet/caffenet/Restraint/Restraint${i}.caffemodel -gpu 1,2 2>&1 | tee SVDNet/caffenet/log/Relaxation${i}.log
+   ./build/tools/caffe train -solver SVDNet/caffenet/models/solver_relaxation.prototxt -weights SVDNet/caffenet/Restraint/Restraint${i}.caffemodel -gpu 1,2 2>&1 | tee SVDNet/caffenet/log/Relaxation${i}.log
    mv SVDNet/caffenet/Relaxation/relaxation_iter_2000.caffemodel SVDNet/caffenet/Relaxation/Relaxation${i}.caffemodel
    cp SVDNet/caffenet/Relaxation/Relaxation${i}.caffemodel SVDNet/caffenet/caffenet_linear_tmp.caffemodel
 done
-  ./build/tools/caffe train -solver SVDNet/caffenet/solver_restraint_final.prototxt -weights SVDNet/caffenet/Restraint/Restraint25.caffemodel
+  ./build/tools/caffe train -solver SVDNet/caffenet/models/solver_restraint_final.prototxt -weights SVDNet/caffenet/Restraint/Restraint25.caffemodel
   mv SVDNet/caffenet/Restraint/restraint_final_iter_6000.caffemodel SVDNet/caffenet/Restraint/Restraint_final.caffemodel

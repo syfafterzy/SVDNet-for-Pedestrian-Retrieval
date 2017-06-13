@@ -1,4 +1,4 @@
-net: "SVDNet/resnet/relaxation_resnet_partial.prototxt"
+net: "SVDNet/resnet/models/relaxation_resnet_partial.prototxt"
 test_iter:50 
 test_interval:1000
 #average_loss:20
