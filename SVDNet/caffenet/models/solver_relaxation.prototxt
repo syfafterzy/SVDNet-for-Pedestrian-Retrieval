@@ -1,4 +1,4 @@
-net: "SVDNet/caffenet/relaxation_caffenet.prototxt"
+net: "SVDNet/caffenet/models/relaxation_caffenet.prototxt"
 test_iter: 20
 test_interval: 1000
 base_lr: 0.001

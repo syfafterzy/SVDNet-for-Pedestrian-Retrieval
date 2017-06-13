@@ -1,4 +1,4 @@
-net: "SVDNet/caffenet/restraint_caffenet.prototxt"
+net: "SVDNet/caffenet/models/restraint_caffenet.prototxt"
 test_iter: 20
 test_interval: 500
 base_lr: 0.001
