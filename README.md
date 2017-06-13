@@ -24,7 +24,7 @@ cp -r SVDNet-for-Pedestrian-Retrieval/matlab/SVDNet CAFFE_PATH/matlab/
 **Step 2: Train a model with a linear fully-connected layer based on caffenet or resnet.**
 
 ```Shell
-cd CAFFE\_PATH/SVDNet/caffenet(resnet)/
+cd CAFFE_PATH/SVDNet/caffenet(resnet)/
 ```  
 Define your path of caffenet(resnet) basemodel and market1501 dataset in *train\_basemodel.sh*, then: 
 ```Shell
@@ -38,7 +38,7 @@ We have also provided caffenet-based and resnet-based models containing a 1024d-
 
 Define your caffe rootpath and path of market1501 dataset in *train_RRI.sh*, then start the RRI training simply by:  
 ```Shell
-sh train\_RRI.sh
+sh train_RRI.sh
 ```
 </font>
 
