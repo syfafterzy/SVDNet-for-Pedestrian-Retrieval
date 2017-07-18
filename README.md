@@ -63,7 +63,7 @@ Please cite this paper in your publications if it helps your research:
                Weijian Deng and
                Shengjin Wang},
   title     = {SVDNet for Pedestrian Retrieval},
-  journal   = {arXiv preprint arXiv:1703.05693},
+  booktitle   = {ICCV},
   year      = {2017},
 }
 ```
